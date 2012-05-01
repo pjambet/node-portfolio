@@ -35,7 +35,25 @@
 
   app.get('/', function(req, res) {
     return res.render('index', {
-      title: 'My Awesome Site'
+      title: "Index"
+    });
+  });
+
+  app.get('/cv', function(req, res) {
+    return res.render('index', {
+      title: "Cv coming soon"
+    });
+  });
+
+  app.get('/contact', function(req, res) {
+    return res.render('index', {
+      title: "Contact page coming soon"
+    });
+  });
+
+  app.get('/posts/new', function(req, res) {
+    return res.render('index', {
+      title: "you should not be here"
     });
   });
 
