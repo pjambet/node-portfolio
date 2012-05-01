@@ -42,9 +42,16 @@ app.configure 'production', () ->
 
 # app.get('/', routes.index);
 app.get '/', (req, res) ->
-  res.render 'index', { title: 'My Awesome Site' }
+  res.render 'index', {title: "Index"}
 
+app.get '/cv', (req, res) ->
+  res.render 'index', {title: "Cv coming soon"}
 
+app.get '/contact', (req, res) ->
+  res.render 'index', {title: "Contact page coming soon"}
+
+app.get '/posts/new', (req, res) ->
+  res.render 'index', {title: "you should not be here"}
 port = process.env.PORT || 3000
 
 app.listen port, () ->
