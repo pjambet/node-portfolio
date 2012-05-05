@@ -5,87 +5,25 @@ html(lang="en")
     title Portfolio
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    ul(class="hmenu")
-    #block_menu
-      ul#menu
-        li
-          a(href="/contact") Contact me
-        li
-          a.mailto(href="mailto:pierre.jambet@gmail.com") pierre.jambet@gmail.com
-
-    #main_wrapper
-      header
-        #main_title
-          img(src="/images/zeppelin_small.png", alt="zeppelin logo", id="logo")
-          a(href="/", class="no_link")
-            h1 Pierre Jambet's Blog
-            h2 Engineering Student - Information Technology &amp; Management
-        nav
-          ul
-            li
-              a(href="/") Home
-            li
-              a(href="/contact") Contact
-            li
-              a(href="/cv") CV
-            li
-              a(href="/posts/new") Add a new article
-
-      #banner_image
-
-      section
-        aside
-          h1 About the author
-          img(src="/images/bubble_right.png", alt="", id="arrow_bubble")
-          p(id="photo_profile")
-            img(id="profile", src="/images/prof_small.png", alt="My photo", width="139", height="116")
-
-          p My name is Pierre, I am 22, and I made this blog in order to pass my Web Programming course.
-          p This small "about tab" is indeed quite useless but I think it's kinda nice, so that's why it's here. Please find below links to everything interesting about me you could eventually find by yourself on the internet
-
-          p
-            a(href="http://www.facebook.com/pierre.jambet", target="_blank")
-              img(src="/images/facebook.png", alt="Facebook", class="api_link")
-            a(href="http://www.viadeo.com/profile/002ryvl3fkwxmbn", target="_blank")
-              img(src="/images/viadeo.png", alt="Viadeo", class="api_link")
-            a(href="http://www.linkedin.com/profile/view?id=156041350", target="_blank")
-              img(src="/images/linkedin.png", alt="Linkedin", class="api_link")
-            a(href="https://github.com/pjambet", target:"_blank")
-              img(src="/images/github.png", alt="github", class="api_link")
-            a(href="https://plus.google.com/115735889342774292629", target="_blank")
-              img(alt="google+", src="/images/googleplus.png", class="api_link")
-            a(href="https://twitter.com/#!/pierre_jambet", target="_blank")
-              img(src="/images/twitter.png", alt="Twitter", class="api_link")
-
-        article
-          content
-            != body
-
-
-      footer
-        #tweet
-          #last_tweet
-            h1 My last tweet
-            img(src="/images/tweet.png", alt="tweet")
-          #twitter_update_list
-            script(type="text/javascript", src="http://twitter.com/javascripts/blogger.js")
-            script(type="text/javascript", src="http://twitter.com/statuses/user_timeline/pierre_jambet.json?callback=twitterCallback2&count=1")
-
-        #my_photos
-          a(class="no_link", href="https://picasaweb.google.com/115735889342774292629", target="_blank")
-            h1 My photos
-            img(src="/images/picasa.png", alt="picasa")
-          p
-            img(src="/images/photo1.jpg", alt="Photographie", width="69", heigth="69")
-            img(src="/images/photo2.jpg", alt="Photographie", width="69", heigth="69")
-            img(src="/images/photo3.jpg", alt="Photographie", width="69", heigth="69")
-            img(src="/images/photo4.jpg", alt="Photographie", width="69", heigth="69")
-        #my_friends
-          h1 TODO
-        br
-        #copyright
-          span(style="text-align:center")
-            p Copyright® -
-              a(href="http://www.siteduzero.com/", target="_blank")
-                Le site du zero
-
+    section
+      .profile
+        header
+          h1
+            | {&nbsp;
+            span.name
+              | name:&nbsp;
+              em pierre&nbsp;
+            span.surname
+              | surname:&nbsp;
+              em jambet
+            | }
+        ul
+          li
+            a(href="https://github.com/pjambet", target="_blank") code
+          li
+            a(href="http://www.linkedin.com/profile/view?id=156041350&trk=tab_pro", target="_blank") profile
+          li
+            a(href="/blog") blog
+          li
+            a(href="#") photos
+    footer
