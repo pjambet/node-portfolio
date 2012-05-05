@@ -204,7 +204,7 @@ footer {
   position: fixed;
   bottom: 0;
 }
-@media only screen and (max-device-width: 781px) {
+@media only screen and (max-width: 781px) {
   body {
     background-size: 40em;
   }
@@ -214,7 +214,7 @@ footer {
   }
 }
 
-@media only screen and (max-device-width: 624px) {
+@media only screen and (max-width: 624px) {
   body {
     background-size: 30em;
   }
@@ -229,7 +229,7 @@ footer {
     display: block;
   }
 }
-@media only screen and (max-device-width: 470px) {
+@media only screen and (max-width : 470px) {
   body {
     background-size: 25em;
   }
