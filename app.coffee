@@ -6,10 +6,6 @@ publicDir      = __dirname + '/public'
 
 app            = module.exports = express.createServer()
 
-###
-Configuration
-###
-
 app.configure( () ->
   app.set 'views', __dirname + '/views'
   app.set 'view engine', 'jade'
@@ -44,7 +40,6 @@ app.configure 'production', () ->
 
 # Routes
 
-# app.get('/', routes.index);
 app.get '/', (req, res) ->
   res.render 'index', {title: "Index"}
 
@@ -59,6 +54,7 @@ app.get '/contact', (req, res) ->
 
 app.get '/posts/new', (req, res) ->
   res.render 'index', {title: "you should not be here"}
+
 port = process.env.PORT || 3000
 
 app.listen port, () ->
