@@ -19,7 +19,8 @@
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(app.router);
-    return app.use(express["static"](__dirname + '/public'));
+    app.use(express["static"](__dirname + '/public'));
+    return app.use(require('connect-assets')());
   });
 
   app.configure('development', function() {
