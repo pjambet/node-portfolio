@@ -1,7 +1,7 @@
 @import "/styles/style.css";
-body{background:url('/images/zep.png') no-repeat right top;background-size:70%;font-family:'Trebuchet MS',Arial,sans-serif;color:#181818;}
-header h1{font-size:2.875em;}header h1 span{color:#d0cbbf;}header h1 span em{font-family:'Droid Serif','Myriad Pro','Georgia',sans-serif;color:black;}
-.profile{position:relative;top:21em;left:4em;width:86%;}.profile ul,.profile li{display:inline-block;padding:0;}
+body{background:url('/images/zep.png') no-repeat right top;background-size:70%;font-family:'Vollkorn','Trebuchet MS',Arial,sans-serif;color:#181818;}
+header h1{font-size:2.875em;}header h1 span{color:#d0cbbf;}header h1 span em{font-family:'Vollkorn','Droid Serif','Myriad Pro','Georgia',sans-serif;color:black;}
+.profile{position:relative;top:21em;left:4em;width:660px;}.profile ul,.profile li{display:inline-block;padding:0;margin:10px 0px 0px 0px;}
 .profile li{font-size:30px;margin-right:10px;}
 .profile ul:before{content:"[";font-size:30px;color:white;}
 .profile ul:after{content:"]";font-size:30px;color:white;}

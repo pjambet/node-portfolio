@@ -3,7 +3,7 @@
 body {
   background: url('/images/zep.png') no-repeat right top;
   background-size: 70%;
-  font-family: 'Trebuchet MS', Arial, sans-serif;
+  font-family: 'Vollkorn', 'Trebuchet MS', Arial, sans-serif;
   color: #181818;
 }
 
@@ -13,7 +13,7 @@ header{
     span {
       color: rgb(208,203,191);
       em {
-        font-family: 'Droid Serif', 'Myriad Pro', 'Georgia', sans-serif;
+        font-family: 'Vollkorn', 'Droid Serif', 'Myriad Pro', 'Georgia', sans-serif;
         color: black;
       }
     }
@@ -26,10 +26,11 @@ header{
   position: relative;
   top: 21em;
   left: 4em;
-  width: 86%;
+  width: 660px;
   ul, li{
     display: inline-block;
     padding: 0;
+    margin: 10px 0px 0px 0px;
   }
   li{
     font-size: 30px;
@@ -87,6 +88,13 @@ footer {
   .profile {
     top: 20em;
     margin-bottom: 6em;
+  }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  .profile span.name, .profile span.surname {
+    display: block;
+    margin-left: 30px;
   }
 }
 
