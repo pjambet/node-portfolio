@@ -4,9 +4,9 @@ header h1{font-size:2.875em;}header h1 span{color:#d0cbbf;}header h1 span em{fon
 .profile li{font-size:30px;margin-right:10px;}
 .profile ul:before{content:"[";font-size:30px;color:white;}
 .profile ul:after{content:"]";font-size:30px;color:white;}
-.profile ul:hover:before,.profile .profile ul:hover:after{color:black;}
-.profile li:before,.profile .profile li:after{content:"\"";color:white;}
-.profile li:hover:before,.profile .profile li:hover:after{color:red;}
+.profile ul:hover:before,.profile ul:hover:after{color:black;}
+.profile li:before,.profile li:after{content:"\"";color:white;}
+.profile li:hover:before,.profile li:hover:after{color:red;}
 .profile a{text-decoration:none;color:black;}
 .profile a:visited{text-decoration:none;color:black;}
 footer{background:url('/images/clouds.png') repeat-x right top;background-position:0 -63px;height:75px;width:100%;position:fixed;bottom:0;}
