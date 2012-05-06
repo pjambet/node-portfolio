@@ -5,7 +5,7 @@ lessMiddleware = require('less-middleware')
 publicDir      = __dirname + '/public'
 
 app            = module.exports = express.createServer()
-less           = null
+
 ###
 Configuration
 ###
