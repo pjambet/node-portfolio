@@ -1,20 +1,32 @@
 
 express   = require('express')
 routes    = require('./routes')
+publicDir    = __dirname + '/public'
 
 app       = module.exports = express.createServer()
-
+less      = null
 ###
 Configuration
 ###
+
+
+express.compiler.compilers.less.compile = (str, fn) ->
+  if (!less)
+    less = require("less")
+  try
+    less.render(str, { compress : true }, fn)
+  catch err
+    fn(err)
 
 app.configure( () ->
   app.set 'views', __dirname + '/views'
   app.set 'view engine', 'jade'
   app.use express.bodyParser()
   app.use express.methodOverride()
+  app.use express.cookieParser()
+  app.use express.compiler({ src: publicDir, enable: ['less']})
+  app.use express.static(publicDir)
   app.use app.router
-  app.use express.static(__dirname + '/public')
 )
 
 app.configure 'development', () ->
