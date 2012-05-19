@@ -6,27 +6,31 @@ html(lang="en")
     title(lang="en") Pierre Jambet's Portfolio
     link(rel='stylesheet', href='/styles/portfolio.css')
     link(rel='shortcut icon', type='image/png', href="/images/favicon.png")
+    link(href='http://fonts.googleapis.com/css?family=Vollkorn', rel='stylesheet', type='text/css')
 
   body
     section
       .profile
         header
           h1
-            | {&nbsp;
             span.name
               | name:&nbsp;
-              em pierre&nbsp;
+              em pierre,&nbsp;
             span.surname
               | surname:&nbsp;
               em jambet
-            | }
         ul
           li
-            a(href="https://github.com/pjambet", target="_blank") code
+            a(href="https://github.com/pjambet", target="_blank") code,
           li
-            a(href="http://www.linkedin.com/pub/pierre-jambet/44/311/85a", target="_blank") profile
+            a(href="http://www.linkedin.com/pub/pierre-jambet/44/311/85a", target="_blank") profile,
           li
-            a(href="/blog") blog
+            a(href="/posts") blog,
+          li
+            a(href="/work") work,
           li
             a(href="#") photos
+
+    section
+      != body
     footer

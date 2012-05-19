@@ -1,4 +1,3 @@
-
 express        = require('express')
 routes         = require('./routes')
 lessMiddleware = require('less-middleware')
@@ -41,19 +40,22 @@ app.configure 'production', () ->
 # Routes
 
 app.get '/', (req, res) ->
-  res.render 'index', {title: "Index"}
+  res.render 'index', {title: ""}
 
 app.get '/cv', (req, res) ->
   res.render 'index', {title: "Cv coming soon"}
 
-app.get '/blog', (req, res) ->
-  res.render 'index', {title: "Blog coming soon"}
+app.get '/posts', (req, res) ->
+  res.render 'posts', {title: "Blog coming soon"}
 
 app.get '/contact', (req, res) ->
   res.render 'index', {title: "Contact page coming soon"}
 
 app.get '/posts/new', (req, res) ->
   res.render 'index', {title: "you should not be here"}
+
+app.get '/work', (req, res) ->
+  res.render 'work'
 
 port = process.env.PORT || 3000
 

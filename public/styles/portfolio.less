@@ -10,6 +10,23 @@ body {
 header{
   h1{
     font-size: 2.875em;
+    &:before{
+      content: "{ ";
+    }
+    &:after{
+      content: " }";
+    }
+    &:hover{
+      span{
+        color: rgb(208,203,191) * 1.1;
+        em{
+          color: black;
+        }
+      }
+      &:after, &:before{
+        color: rgb(208,203,191) * 0.5;
+      }
+    }
     span {
       color: rgb(208,203,191);
       em {
@@ -19,8 +36,6 @@ header{
     }
   }
 }
-
-
 
 .profile {
   position: relative;
@@ -35,6 +50,9 @@ header{
   li{
     font-size: 30px;
     margin-right: 10px;
+    &:last-child{
+      margin-right: 0;
+    }
   }
   ul:before {
     content: "[";
@@ -53,8 +71,13 @@ header{
     content: "\"";
     color: white;
   }
-  li:hover:before, li:hover:after {
-    color: red;
+  li:hover{
+    a{
+      color: rgb(208,203,191) * 0.5;
+    }
+    &:before, &:after {
+      color: red;
+    }
   }
   a{
     text-decoration: none;
@@ -65,7 +88,6 @@ header{
     color: black;
   }
 }
-
 
 footer {
   background: url('/images/clouds.png') repeat-x right top;
@@ -102,6 +124,7 @@ footer {
   .profile {
     top: 13em;
     margin-bottom: 6em;
+    width: 550px;
   }
   header h1{
     font-size: 4.5em;
@@ -120,18 +143,28 @@ footer {
 }
 
 @media screen and (max-width : 640px) {
+  .profile{
+    width: 385px;
+  }
   header h1{
     font-size: 3em;
   }
 }
 
 @media screen and (max-width : 460px) {
+  .profile{
+    width: 325px;
+    left: 2em;
+  }
   header h1{
     font-size: 2.5em;
   }
 }
 
 @media screen and (max-width : 380px) {
+  .profile{
+    width: 300px;
+  }
   header h1{
     font-size: 2em;
   }
