@@ -1,5 +1,5 @@
 App.ShowPostView = Ember.View.extend({
-  templateName: 'show',
+  templateName: 'app/templates/posts/show',
   classNames:   ['show-post'],
   tagName:      'tr',
 

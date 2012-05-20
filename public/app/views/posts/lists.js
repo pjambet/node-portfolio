@@ -1,5 +1,5 @@
 App.ListPostsView = Ember.View.extend({
-  templateName:    'list',
+  templateName:    'app/templates/posts/list',
   postsBinding: 'App.postsController',
 
   showNew: function(){

@@ -1,6 +1,6 @@
 App.EditPostView = Ember.View.extend({
   tagName:      'form',
-  templateName: 'edit',
+  templateName: 'app/templates/posts/edit',
 
   init: function() {
     this._super();

@@ -53,7 +53,7 @@ function compileHandlebarsTemplate(templatesDir, fileName) {
   //compile the handlebars template inside the vm context
   vm.runInContext('templatejs = Ember.Handlebars.precompile(template).toString();', context);
 
-  var namedTemplateJs = 'Ember.TEMPLATES["' + fileName.replace(/.handlebars/, '') + '"] = Handlebars.template(' + context.templatejs + ');';
+  var namedTemplateJs = 'Ember.TEMPLATES["' + templatesDir.replace(/public\//, '')+"/"+fileName.replace(/.handlebars/, '') + '"] = Handlebars.template(' + context.templatejs + ');';
 
   //extract the compiled template from the vm context and save to .js file
   fs.writeFileSync(file.replace(/\.handlebars$/, '.js').replace(templatesDir, destinationDir), namedTemplateJs, 'utf8');
