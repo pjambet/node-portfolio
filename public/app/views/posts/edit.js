@@ -7,7 +7,6 @@ App.EditPostView = Ember.View.extend({
     // Create a new post that's a duplicate of the post in the parentView;
     // Changes made to the duplicate won't be applied to the original unless
     // everything goes well in submitForm()
-    console.log(this.get('parentView').get('post').copy());
     this.set("post", this.get('parentView').get('post').copy());
   },
 
