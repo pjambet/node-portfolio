@@ -1,13 +1,10 @@
-article
-  header
-    p
-      time= new Date()
-    h3
-      = "First blog post"
-  .content
-    p
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit nisi, euismod in imperdiet et, pulvinar non nibh. Aenean sit amet lorem vitae lacus imperdiet molestie. Nulla in quam vitae nibh suscipit scelerisque. Curabitur sollicitudin posuere lacus, quis tincidunt ligula scelerisque eu. Proin bibendum euismod ullamcorper. Pellentesque quis leo nunc, lacinia convallis lectus. Etiam eget libero sit amet sapien dignissim sodales. Duis leo felis, consectetur id dapibus eget, fringilla dictum lorem.
-    p
-      Proin quis justo non tortor ultricies imperdiet vitae nec nisl. Nullam tortor est, bibendum ac sodales et, commodo id ligula. Vestibulum at massa sit amet est venenatis volutpat. Curabitur pellentesque vulputate neque, ac molestie est varius vitae. Curabitur consectetur malesuada gravida. Mauris consectetur viverra est, sed imperdiet nunc ornare et. Suspendisse potenti. Vivamus sed ante non tellus varius placerat id et justo.
-    p
-      In hac habitasse platea dictumst. Cras quis orci at nisl dictum pretium at in sem. Phasellus pretium ornare sapien fermentum ullamcorper. Phasellus augue quam, feugiat sed auctor sed, elementum eu nisl. Donec dolor nunc, mattis in condimentum a, eleifend sit amet nulla. Vestibulum eros tortor, malesuada nec tempus et, egestas ac augue. Quisque dapibus augue id tortor fringilla suscipit.
+h1 Posts
+
+script(type="text/x-handlebars")
+  {{ view App.ListPostsView }}
+
+
+script(type="text/javascript")
+  $(function() {
+    App.postsController.findAll();
+  });

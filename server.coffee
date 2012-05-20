@@ -2,8 +2,11 @@ express        = require('express')
 routes         = require('./routes')
 lessMiddleware = require('less-middleware')
 publicDir      = __dirname + '/public'
+pg             = require('pg')
 
 app            = module.exports = express.createServer()
+
+conString = "postgres://localhost/node-portfolio"
 
 app.configure( () ->
   app.set 'views', __dirname + '/views'
@@ -26,17 +29,6 @@ app.configure 'development', () ->
 app.configure 'production', () ->
   app.use express.errorHandler()
 
-
-# Redis
-
-# var redis = require('redis-url').connect(process.env.REDISTOGO_URL);
-
-# redis.set('foo', 'bar');
-
-# redis.get('foo', function(err, value) {
-#   console.log('foo is: ' + value);
-# });
-
 # Routes
 
 app.get '/', (req, res) ->
@@ -46,7 +38,13 @@ app.get '/cv', (req, res) ->
   res.render 'index', {title: "Cv coming soon"}
 
 app.get '/posts', (req, res) ->
-  res.render 'posts', {title: "Blog coming soon"}
+  if req.accepts('application/json')
+    pg.connect conString, (err, client) ->
+      client.query "SELECT * FROM posts", (err, result) ->
+        res.contentType('application/json')
+        res.send(result.rows)
+  else
+    res.render 'posts', {title: "Blog coming soon"}
 
 app.get '/contact', (req, res) ->
   res.render 'index', {title: "Contact page coming soon"}
