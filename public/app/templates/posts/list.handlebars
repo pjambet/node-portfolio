@@ -10,5 +10,17 @@
   {{#each posts}}
     {{view App.ShowPostView postBinding="this"}}
   {{/each}}
+  {{#if isNewVisible}}
+    <tr>
+      <td>*</td>
+      <td>
+        {{view App.NewPostView}}
+      </td>
+    </tr>
+  {{/if}}
   </tbody>
 </table>
+<div class="commands">
+  <a href="#" {{action "showNew"}}>New Post</a>
+  <a href="#" {{action "refreshListing"}}>Refresh Listing</a>
+</div>

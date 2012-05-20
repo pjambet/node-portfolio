@@ -2,11 +2,22 @@ express        = require('express')
 routes         = require('./routes')
 lessMiddleware = require('less-middleware')
 publicDir      = __dirname + '/public'
-pg             = require('pg')
+orm            = require('orm')
 
-app            = module.exports = express.createServer()
+Post = null
+db_host = process.env.DATABASE_URL || "postgres://pierre@localhost/portfolio_blog"
+db = orm.connect db_host, (success, db)->
+  if !success
+    console.log("Could not connect to database!")
+  else
+    console.log("Connection successful")
+    Post = db.define "posts"
+      "title"   : "String"
+      "content"    : "Text"
 
-conString = "postgres://localhost/node-portfolio"
+
+
+app = module.exports = express.createServer()
 
 app.configure( () ->
   app.set 'views', __dirname + '/views'
@@ -39,12 +50,33 @@ app.get '/cv', (req, res) ->
 
 app.get '/posts', (req, res) ->
   if req.accepts('application/json')
-    pg.connect conString, (err, client) ->
-      client.query "SELECT * FROM posts", (err, result) ->
-        res.contentType('application/json')
-        res.send(result.rows)
+    Post.find (posts) ->
+      res.contentType('application/json')
+      res.send(posts)
   else
     res.render 'posts', {title: "Blog coming soon"}
+
+app.put '/posts/:id', (req, res) ->
+  Post.get req.params.id, (post) ->
+    post.title = req.body.post.title
+    post.content = req.body.post.content
+    post.save (err) ->
+      console.log 'err: ' + err
+      res.contentType('application/json')
+      res.send('')
+
+app.post '/posts', (req, res) ->
+  post = new Post(req.body.post)
+  post.save (err) ->
+    console.log 'err: ' + err
+    res.contentType('application/json')
+    res.send(post)
+
+app.delete '/posts/:id', (req, res) ->
+  Post.get req.params.id, (post) ->
+    post.remove () ->
+    res.contentType('application/json')
+    res.send('')
 
 app.get '/contact', (req, res) ->
   res.render 'index', {title: "Contact page coming soon"}

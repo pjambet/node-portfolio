@@ -1,6 +1,16 @@
 <td>{{post.id}}</td>
 <td class="data">
-  {{post.fullName}}
+  {{#if isEditing}}
+    {{view App.EditPostView}}
+  {{else}}
+    {{post.fullName}}
+  {{/if}}
+  <div class="commands">
+    {{#unless isEditing}}
+      <a href="#" {{action "showEdit"}}>Edit</a>
+      <a href="#" {{action "destroyRecord"}}>Remove</a>
+    {{/unless}}
+  </div>
 </td>
 <td class="data">
   {{post.content}}
