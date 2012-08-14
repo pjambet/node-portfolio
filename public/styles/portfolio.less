@@ -240,8 +240,10 @@ footer {
   header h1{
     font-size: 2em;
   }
-  header h1 .image-wrapper.grown-up {
-    left: 0;
+  header h1 {
+    &.image-wrapper.grown-up, &.image-wrapper.baby {
+      left: 0;
+    }
   }
 }
 
