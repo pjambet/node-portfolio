@@ -1,5 +1,7 @@
 express        = require('express')
 routes         = require('./routes')
+http           = require('http')
+path           = require('path')
 lessMiddleware = require('less-middleware')
 publicDir      = __dirname + '/public'
 orm            = require('orm')
@@ -13,28 +15,32 @@ db = orm.connect db_host, (success, db)->
     console.log("Connection successful")
     Post = db.define "posts"
       "title"   : "String"
-      "content"    : "Text"
+      "content" : "Text"
 
 
 
-app = module.exports = express.createServer()
+app = express()
+
 
 app.configure( () ->
+  app.set 'port', process.env.PORT || 3000
   app.set 'views', __dirname + '/views'
   app.set 'view engine', 'jade'
+  app.use express.favicon()
+  app.use express.logger('dev')
   app.use express.cookieParser()
   app.use lessMiddleware({ src: publicDir, compress: true })
   app.use express.static(publicDir )
   app.use express.bodyParser()
   app.use express.methodOverride()
+  app.use express.static(path.join(__dirname, 'public'))
   app.use app.router
 )
 
 app.configure 'development', () ->
-  app.use express.errorHandler({
+  app.use express.errorHandler
     dumpExceptions: true
     showStack: true
-  })
 
 
 app.configure 'production', () ->
@@ -87,7 +93,6 @@ app.get '/posts/new', (req, res) ->
 app.get '/work', (req, res) ->
   res.render 'work'
 
-port = process.env.PORT || 3000
 
-app.listen port, () ->
-  console.log "Express server listening on port %d in %s mode", app.address().port, app.settings.env
+app.listen app.get('port'), ->
+  console.log "Express server listening on port %d in %s mode", app.get('port'), app.settings.env
