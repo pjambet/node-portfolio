@@ -2,27 +2,19 @@ express        = require('express')
 routes         = require('./routes')
 http           = require('http')
 path           = require('path')
+mongoose       = require('mongoose')
 lessMiddleware = require('less-middleware')
 publicDir      = __dirname + '/public'
-orm            = require('orm')
 
-Post = null
-db_host = process.env.DATABASE_URL || "postgres://pierre@localhost/portfolio_blog"
-db = orm.connect db_host, (success, db)->
-  if !success
-    console.log("Could not connect to database!")
-  else
-    console.log("Connection successful")
-    Post = db.define "posts"
-      "title"   : "String"
-      "content" : "Text"
+mongoose.connect process.env.MONGOLAB_URI || 'mongodb://localhost/todone'
 
-
+Todo = mongoose.model 'Todo', new mongoose.Schema
+  content: String
+  done: Boolean
 
 app = express()
 
-
-app.configure( () ->
+app.configure () ->
   app.set 'port', process.env.PORT || 3000
   app.set 'views', __dirname + '/views'
   app.set 'view engine', 'jade'
@@ -35,7 +27,6 @@ app.configure( () ->
   app.use express.methodOverride()
   app.use express.static(path.join(__dirname, 'public'))
   app.use app.router
-)
 
 app.configure 'development', () ->
   app.use express.errorHandler
@@ -51,47 +42,31 @@ app.configure 'production', () ->
 app.get '/', (req, res) ->
   res.render 'index', {title: ""}
 
-app.get '/cv', (req, res) ->
-  res.render 'index', {title: "Cv coming soon"}
+app.get '/todos_index', (req, res) ->
+  res.render 'todos_index'
 
-app.get '/posts', (req, res) ->
-  if req.accepts('application/json')
-    Post.find (posts) ->
-      res.contentType('application/json')
-      res.send(posts)
-  else
-    res.render 'posts', {title: "Blog coming soon"}
+app.get "/todos", (req, res) ->
+  Todo.find (err, todos) ->
+    res.send todos
 
-app.put '/posts/:id', (req, res) ->
-  Post.get req.params.id, (post) ->
-    post.title = req.body.post.title
-    post.content = req.body.post.content
-    post.save (err) ->
-      console.log 'err: ' + err
-      res.contentType('application/json')
-      res.send('')
+app.post "/todos", (req, res) ->
+  todo = new Todo(content: req.body.content, done: req.body.done)
+  todo.save (err) ->
+    console.log("created") unless err
+  res.send todo
 
-app.post '/posts', (req, res) ->
-  post = new Post(req.body.post)
-  post.save (err) ->
-    console.log 'err: ' + err
-    res.contentType('application/json')
-    res.send(post)
+app.put "/todos/:id", (req, res) ->
+  Todo.findById req.params.id, (err, todo) ->
+    todo.content = req.body.content
+    todo.done = req.body.done
+    todo.save (err) ->
+      console.log("updated") unless err
+      res.send todo
 
-app.delete '/posts/:id', (req, res) ->
-  Post.get req.params.id, (post) ->
-    post.remove () ->
-    res.contentType('application/json')
-    res.send('')
-
-app.get '/contact', (req, res) ->
-  res.render 'index', {title: "Contact page coming soon"}
-
-app.get '/posts/new', (req, res) ->
-  res.render 'index', {title: "you should not be here"}
-
-app.get '/work', (req, res) ->
-  res.render 'work'
+app.del '/todos/:id', (req, res) ->
+  Todo.findById req.params.id, (err, todo) ->
+    todo.remove (err) ->
+      console.log("removed") unless err
 
 
 app.listen app.get('port'), ->
